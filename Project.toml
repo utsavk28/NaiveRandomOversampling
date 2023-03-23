@@ -1,0 +1,9 @@
+name = "NaiveRandomOversampling"
+uuid = "4c09aa87-e9c5-4991-aef6-b3d4e6f075a2"
+authors = ["utsavk28 <utsavkhatu416@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+CategoricalArrays = "324d7699-5711-5eae-9e2f-1d82baa6b597"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+MLUtils = "f1d291b0-491e-4a28-83b9-f70985020b54"
