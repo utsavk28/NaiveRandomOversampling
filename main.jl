@@ -8,8 +8,13 @@ using .NaiveRandomOversampling
 X = DataFrame(Id=1:6, Gender=["M", "F", "F", "M", "F", "M"])
 y = CategoricalArray(["Old", "Young", "Middle", "Middle", "Middle", "Young"])
 
+df = X
+df[!,"Class"] = y
+println(df)
+
 Xover,yover = naive_random_oversampling(X,y)
 
-println(Xover)
-println(yover)
+df = Xover
+df[!,"Class"] = yover
+println(df)
 

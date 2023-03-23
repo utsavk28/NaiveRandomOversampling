@@ -17,18 +17,20 @@ function naive_random_oversampling(X,y::AbstractVector)
     for x in unique(y)
         idx = findall(>(0), x .== y)
         y_idx[x] = idx
-        sz = max(sz,length(idx))
+        sz = max(sz, length(idx))
     end
+
+    genIds(x) = [x[2]..., randobs(x[2], sz-length(x[2]))...]
 
     # Generating list of idx with each class indices being randomly 
     # sampled from y_idx with sample size equal to sz 
-    # all_idx = vcat(map(x -> randobs(x[2],sz),collect(y_idx))...)
-    all_idx = map(x -> randobs(x[2],sz),y_idx |> collect) |> Iterators.flatten |> collect
+    # all_idx = vcat(map(genIds,collect(y_idx))...)
+    all_idx = map(genIds, y_idx |> collect) |> Iterators.flatten |> collect
     shuffle!(rng,all_idx)
     
 
     # Utilizing getobs from MLUtils to obtain Xover & yover
-    Xover,yover = getobs(X,all_idx),getobs(y,all_idx)
+    Xover,yover = getobs(X,all_idx), getobs(y,all_idx)
     Xover,yover
 end
 
